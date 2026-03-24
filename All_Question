@@ -1,0 +1,234 @@
+# 🔥 1. GD (Group Discussion) Topics
+
+For 3 years experience, GDs are usually **opinion + tech awareness + communication**.
+
+### Common GD Topics
+
+* Is AI replacing developers?
+* MERN vs Laravel – which is better for startups?
+* Remote work vs office work
+* Microservices vs Monolith architecture
+* Is JavaScript enough for backend?
+* Impact of cloud computing on startups
+* Open-source vs proprietary software
+* Startup culture vs corporate jobs
+
+### What Interviewers Check
+
+* Clarity of thought
+* Communication
+* Leadership (not domination)
+* Logical arguments
+
+👉 Tip: Use structure → **Intro → 2–3 points → Example → Conclusion**
+
+---
+
+# 💻 2. JavaScript / TypeScript Questions
+
+### Core JS
+
+* Difference between `var`, `let`, `const`
+* Closures (VERY IMPORTANT)
+* Event loop & async behavior
+* Promises vs async/await
+* Hoisting
+* `this` keyword behavior
+* Arrow functions vs normal functions
+
+### Advanced
+
+* Debouncing & throttling
+* Deep copy vs shallow copy
+* Prototype & inheritance
+* Memory leaks in JS
+* Currying
+
+### Coding Questions
+
+* Reverse a string / array
+* Flatten nested array
+* Implement debounce function
+* Find duplicates in array
+* LRU Cache (important for 3 yrs exp)
+
+---
+
+# ⚛️ 3. React.js Questions
+
+### Basics
+
+* What is Virtual DOM?
+* Functional vs Class components
+* Props vs State
+* Controlled vs uncontrolled components
+
+### Hooks (VERY IMPORTANT)
+
+* `useState`, `useEffect`, `useMemo`, `useCallback`
+* Custom hooks
+* Dependency array issues
+
+### Advanced
+
+* React performance optimization
+* Code splitting
+* Context API vs Redux
+* Handling large forms
+* Error boundaries
+
+### Practical
+
+* Build a todo app (basic)
+* Optimize re-rendering
+* API integration
+
+---
+
+# 🟢 4. Node.js / Backend Questions
+
+### Basics
+
+* What is Node.js?
+* Single-threaded but scalable — how?
+* Event loop phases
+* Streams & buffers
+
+### APIs
+
+* REST API design principles
+* Middleware in Express.js
+* Authentication (JWT vs Session)
+
+### Advanced
+
+* Rate limiting
+* Caching strategies (Redis basics)
+* Error handling best practices
+* Logging
+
+---
+
+# 🟣 5. PHP Laravel Questions
+
+### Basics
+
+* MVC architecture in Laravel
+* Routing & middleware
+* Blade templates
+
+### Database
+
+* Eloquent ORM vs Query Builder
+* Relationships (One-to-many, Many-to-many)
+
+### Advanced
+
+* Laravel authentication
+* Queues & jobs
+* API development in Laravel
+* Service container & dependency injection
+
+---
+
+# 🗄️ 6. Database Questions (VERY IMPORTANT)
+
+### SQL (MySQL)
+
+* Joins (Inner, Left, Right)
+* Indexing
+* Normalization
+* Transactions & ACID
+
+### NoSQL (MongoDB)
+
+* Documents vs tables
+* Aggregation pipeline
+* Indexing in MongoDB
+
+### Practical
+
+* Write query to find 2nd highest salary
+* Design schema for:
+
+  * E-commerce
+  * Chat app
+
+---
+
+# ☁️ 7. DevOps / Tools
+
+* What is CI/CD?
+* Docker basics (image vs container)
+* AWS basics:
+
+  * EC2
+  * S3
+* Git:
+
+  * Rebase vs merge
+  * Branching strategy (Git flow)
+
+---
+
+# 🧠 8. System Design (Light for 3 yrs)
+
+* Design a URL shortener
+* Design a chat system
+* Design an e-commerce backend
+
+👉 Focus on:
+
+* API design
+* Database schema
+* Scalability basics
+
+---
+
+# 🐞 9. Debugging & Scenario Questions
+
+* API is slow — how do you debug?
+* React app re-rendering too much
+* Database query taking too long
+* Memory leak in Node app
+
+---
+
+# 🤝 10. Behavioral Questions
+
+* Tell me about yourself
+* Describe a challenging bug you solved
+* Conflict with team member
+* Tight deadline handling
+* Why this company?
+
+---
+
+# 🔥 BONUS: Real Interview Rapid-Fire
+
+They may ask:
+
+* Difference between SQL & NoSQL
+* What happens when you type a URL in browser?
+* How does JWT work?
+* Explain your project architecture
+* How do you handle security?
+
+---
+
+# 🚀 Final Strategy for You (3 Years Exp)
+
+Focus MOST on:
+✔ Projects (VERY IMPORTANT)
+✔ React + Node deep understanding
+✔ API + DB design
+✔ Real-world problem solving
+
+---
+
+If you want, I can:
+✅ Do a **mock interview (real questions + answers)**
+✅ Give **HR + GD speaking scripts**
+✅ Review your **resume/project explanation**
+
+Just tell me 👍
