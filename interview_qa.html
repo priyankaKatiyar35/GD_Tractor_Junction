@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Q&A — Your Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --bg2: #16161a;
+    --bg3: #1f1f25;
+    --border: #2a2a32;
+    --accent: #7c6ff7;
+    --accent2: #5be3a0;
+    --accent3: #f5a623;
+    --text: #e8e8ef;
+    --muted: #888899;
+    --easy: #5be3a0;
+    --medium: #f5a623;
+    --hard: #f06060;
+    --easy-bg: rgba(91,227,160,0.08);
+    --medium-bg: rgba(245,166,35,0.08);
+    --hard-bg: rgba(240,96,96,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; font-size: 15px; line-height: 1.7; }
+
+  /* HEADER */
+  header { padding: 3rem 2rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(14,14,16,0.95); backdrop-filter: blur(10px); z-index: 100; }
+  .header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .logo { display: flex; flex-direction: column; }
+  .logo-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--text); letter-spacing: -0.01em; }
+  .logo-sub { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; margin-top: 2px; }
+  .stats-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 4px 10px; border-radius: 20px; font-family: 'DM Mono', monospace; border: 1px solid; }
+  .chip-total { border-color: var(--accent); color: var(--accent); }
+  .chip-easy { border-color: var(--easy); color: var(--easy); }
+  .chip-med { border-color: var(--medium); color: var(--medium); }
+  .chip-hard { border-color: var(--hard); color: var(--hard); }
+
+  /* LAYOUT */
+  .layout { max-width: 960px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 720px) { .layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 100px; }
+  .sidebar-title { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .nav-item { display: block; padding: 7px 12px; border-radius: 6px; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.15s; border: none; background: none; text-align: left; width: 100%; }
+  .nav-item:hover, .nav-item.active { background: var(--bg3); color: var(--text); }
+  .nav-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom: 1.5rem; }
+  .search-input { width: 100%; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Syne', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--muted); }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .filter-btn { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-family: 'DM Mono', monospace; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .filter-btn.on-easy { background: var(--easy-bg); border-color: var(--easy); color: var(--easy); }
+  .filter-btn.on-med { background: var(--medium-bg); border-color: var(--medium); color: var(--medium); }
+  .filter-btn.on-hard { background: var(--hard-bg); border-color: var(--hard); color: var(--hard); }
+
+  /* SECTIONS */
+  .section { margin-bottom: 2.5rem; }
+  .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .section-name { font-size: 15px; font-weight: 600; color: var(--text); flex: 1; }
+  .section-count { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; }
+  .chevron { font-size: 11px; color: var(--muted); transition: transform 0.2s; }
+  .chevron.open { transform: rotate(180deg); }
+
+  /* Q&A CARD */
+  .qa-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .qa-card:hover { border-color: #3a3a48; }
+  .qa-q { padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+  .q-num { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); min-width: 26px; padding-top: 3px; }
+  .q-body { flex: 1; }
+  .q-text { font-size: 14px; color: var(--text); font-weight: 500; line-height: 1.5; }
+  .q-meta { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .level-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-family: 'DM Mono', monospace; }
+  .lv-easy { background: var(--easy-bg); color: var(--easy); border: 1px solid rgba(91,227,160,0.2); }
+  .lv-medium { background: var(--medium-bg); color: var(--medium); border: 1px solid rgba(245,166,35,0.2); }
+  .lv-hard { background: var(--hard-bg); color: var(--hard); border: 1px solid rgba(240,96,96,0.2); }
+  .tag-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(124,111,247,0.1); color: var(--accent); border: 1px solid rgba(124,111,247,0.2); font-family: 'DM Mono', monospace; }
+  .toggle-icon { font-size: 16px; color: var(--muted); align-self: center; }
+
+  /* ANSWER */
+  .qa-a { border-top: 1px solid var(--border); padding: 16px 16px 16px 54px; display: none; }
+  .qa-a.open { display: block; }
+  .answer-label { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .answer-text { font-size: 14px; color: #c8c8d8; line-height: 1.75; }
+  .answer-text strong { color: var(--text); font-weight: 600; }
+  .answer-text code { font-family: 'DM Mono', monospace; font-size: 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; color: var(--accent2); }
+  .answer-text ul { padding-left: 18px; margin: 8px 0; }
+  .answer-text ul li { margin-bottom: 4px; }
+  .answer-text .highlight { background: rgba(124,111,247,0.12); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 13px; }
+  .answer-text .code-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); margin: 10px 0; white-space: pre-wrap; line-height: 1.6; }
+
+  .empty { text-align: center; padding: 3rem; color: var(--muted); font-size: 14px; }
+  .progress { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 6px; }
+  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-title">Interview Prep — Complete Q&A</span>
+      <span class="logo-sub">tailored to your 3 years of experience</span>
+    </div>
+    <div class="stats-chips">
+      <span class="chip chip-total" id="chip-total">0 questions</span>
+      <span class="chip chip-easy" id="chip-easy">0 basic</span>
+      <span class="chip chip-med" id="chip-med">0 medium</span>
+      <span class="chip chip-hard" id="chip-hard">0 hard</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-title">Topics</div>
+    <div id="sidebar-nav"></div>
+  </div>
+  <div class="main">
+    <div class="search-wrap">
+      <input class="search-input" type="text" id="search" placeholder="Search any question or keyword..." oninput="render()">
+    </div>
+    <div class="filter-row" id="filters"></div>
+    <div id="content"></div>
+  </div>
+</div>
+
+<script>
+const data = [
+  {
+    id: "hr",
+    name: "HR & Behavioral",
+    color: "#f06060",
+    icon: "◆",
+    qs: [
+      {
+        q: "Tell me about yourself.",
+        level: "easy",
+        tags: ["HR"],
+        a: `<strong>Sample Answer:</strong><br>
+I'm a full-stack developer with 3 years of experience building AI-powered platforms and enterprise web applications. In my current role, I've independently owned the complete project lifecycle — from architecture to deployment — for three major systems: an AI-powered Content Management Platform, a Timesheet and Project Planning System, and a QA and Audit Platform.<br><br>
+My core stack is <strong>React, Next.js, FastAPI, and Python</strong>, and I've integrated AI capabilities using <strong>LangChain and OpenAI APIs</strong>. I'm comfortable working with LLMs, building REST APIs, designing databases in MySQL, and building production-ready frontends.<br><br>
+<div class="highlight">Key result: My work improved user engagement by ~30% on the CMS platform and reduced audit cycle time by 25% on the QA platform.</div>
+I'm now looking to join a team where I can continue building scalable, AI-driven products and grow as an engineer.`
+      },
+      {
+        q: "What is your greatest strength and weakness?",
+        level: "easy",
+        tags: ["HR"],
+        a: `<strong>Strength:</strong> My greatest strength is <strong>end-to-end ownership</strong>. I've built three production systems from scratch — handling architecture design, frontend, backend, AI integration, and deployment — without depending on a large team. This means I can move fast, connect dots across layers, and ship complete solutions.<br><br>
+<strong>Weakness:</strong> Early on, I tried to build everything myself instead of leveraging existing tools and libraries. I've learned to evaluate trade-offs — sometimes using a well-maintained open-source library saves days of work. I now consciously balance "build vs reuse" decisions, which has made me faster and my codebases more maintainable.`
+      },
+      {
+        q: "Describe a time you handled a difficult technical challenge.",
+        level: "medium",
+        tags: ["HR", "Project"],
+        a: `<strong>Situation:</strong> In the AI Content Management Platform, I needed to implement document summarization over large PDFs — some 50+ pages — using LangChain and OpenAI APIs. The challenge was that documents exceeded the LLM's context window limit.<br><br>
+<strong>Task:</strong> Summarize accurately without losing important content, while keeping costs and latency reasonable.<br><br>
+<strong>Action:</strong> I implemented a <strong>map-reduce summarization chain</strong> in LangChain — splitting documents into chunks, summarizing each chunk in parallel, then combining summaries into a final cohesive output. I also added caching so the same document wouldn't trigger an API call twice.<br><br>
+<strong>Result:</strong> The feature worked reliably on documents up to 100+ pages with accurate summaries and ~60% lower API costs compared to the naive approach.`
+      },
+      {
+        q: "You owned the full project lifecycle. Walk me through your process.",
+        level: "medium",
+        tags: ["HR", "Architecture"],
+        a: `For all three systems I built, my process followed these phases:<br><br>
+<strong>1. Requirements & Architecture:</strong> Gathered requirements from stakeholders, designed the DB schema, API structure, and component hierarchy before writing any code.<br><br>
+<strong>2. Development:</strong> Built backend (FastAPI) first for stable API contracts, then built React/Next.js frontend consuming those APIs. Added AI features (LangChain) as a separate layer.<br><br>
+<strong>3. Testing:</strong> Wrote unit tests for critical API endpoints, manually tested user flows across all roles (admin, manager, employee).<br><br>
+<strong>4. Deployment & Maintenance:</strong> Handled deployment, monitored for issues, and iterated based on user feedback.<br><br>
+<div class="highlight">The key discipline was treating each project as a product, not just code — keeping maintainability, scalability, and user experience in mind at every step.</div>`
+      },
+      {
+        q: "Why do you want to join this company?",
+        level: "easy",
+        tags: ["HR"],
+        a: `<em>(Customize this with the company name, but use this structure:)</em><br><br>
+<strong>Template:</strong> "I'm drawn to [Company] because [specific reason — product, tech stack, mission]. In my 3 years, I've built AI-integrated platforms independently, and I want to now work within a strong engineering culture where I can both contribute and learn from experienced engineers. I've followed your product and I see how [specific feature or problem they solve] aligns with the kind of work I've been doing with [LangChain/FastAPI/React]. I'm excited about the opportunity to bring my full-stack and AI experience to a product that scales to many users."`
+      },
+      {
+        q: "Tell me about a time you improved performance or reduced a bottleneck.",
+        level: "medium",
+        tags: ["HR", "Project"],
+        a: `In the <strong>Timesheet and Project Planning System</strong>, the original design relied on manual Excel workflows. When I analyzed the process, the biggest bottleneck was that managers had to manually compile data from multiple sheets — taking hours every week.<br><br>
+I replaced this with a <strong>real-time dashboard</strong> with visual analytics built in React using Chart.js, backed by a FastAPI + MySQL system. Managers could now see all team timesheets, project allocations, and approval statuses in one view, updated in real time.<br><br>
+<strong>Result:</strong> Processing time was reduced by <strong>40%</strong> and data accuracy improved significantly because the system enforced validation rules that Excel never could.`
+      },
+    ]
+  },
+  {
+    id: "python",
+    name: "Python",
+    color: "#7c6ff7",
+    icon: "Py",
+    qs: [
+      {
+        q: "What is the difference between a list and a tuple?",
+        level: "easy",
+        tags: ["Python"],
+        a: `<strong>List:</strong> Mutable — you can add, remove, or change elements after creation. Uses square brackets <code>[]</code>.<br>
+<strong>Tuple:</strong> Immutable — once created, it cannot be changed. Uses parentheses <code>()</code>.<br><br>
+<div class="code-block">my_list = [1, 2, 3]
+my_list[0] = 10  # ✅ works
+
+my_tuple = (1, 2, 3)
+my_tuple[0] = 10  # ❌ TypeError: 'tuple' object does not support item assignment</div>
+<strong>When to use each:</strong> Use tuples for fixed data (e.g., coordinates, DB row). Use lists when data changes. Tuples are slightly faster and use less memory.`
+      },
+      {
+        q: "What are decorators in Python?",
+        level: "easy",
+        tags: ["Python"],
+        a: `A decorator is a function that wraps another function to add behavior without modifying it directly. It uses the <code>@</code> syntax.<br><br>
+<div class="code-block">def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@log_call
+def greet(name):
+    return f"Hello, {name}"
+
+greet("Alice")  # prints "Calling greet" then returns "Hello, Alice"</div>
+<strong>Real use in your work:</strong> FastAPI uses decorators heavily — <code>@app.get("/users")</code> is a decorator that registers a route handler. You also encounter them for authentication middleware and caching.`
+      },
+      {
+        q: "What are generators in Python?",
+        level: "medium",
+        tags: ["Python"],
+        a: `A generator is a function that uses <code>yield</code> instead of <code>return</code>. It produces values one at a time, lazily — meaning it doesn't load everything into memory at once.<br><br>
+<div class="code-block">def chunk_document(text, chunk_size=500):
+    for i in range(0, len(text), chunk_size):
+        yield text[i:i+chunk_size]
+
+for chunk in chunk_document(large_pdf_text):
+    summarize(chunk)  # process one chunk at a time</div>
+<strong>Practical relevance:</strong> In your CMS project, when processing large documents for LangChain summarization, generators prevent memory overload by yielding text chunks one at a time instead of loading the whole document.`
+      },
+      {
+        q: "Explain async/await in Python.",
+        level: "medium",
+        tags: ["Python", "FastAPI"],
+        a: `<code>async/await</code> enables non-blocking, concurrent execution. When a function does I/O work (API call, DB query), instead of blocking the thread, it <em>awaits</em> and lets other tasks run.<br><br>
+<div class="code-block">import httpx
+import asyncio
+
+async def fetch_data(url):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+        return response.json()
+
+# In FastAPI:
+@app.get("/summarize")
+async def summarize(doc_id: int):
+    doc = await db.fetch(doc_id)       # await DB query
+    result = await openai_call(doc)    # await AI API call
+    return result</div>
+<strong>Why it matters:</strong> In your FastAPI backend, <code>async def</code> endpoints handle many concurrent requests efficiently — especially important when making OpenAI API calls that have ~1–2 second latency.`
+      },
+      {
+        q: "How would you optimize a Python script processing 1 million rows?",
+        level: "hard",
+        tags: ["Python", "SQL"],
+        a: `Several techniques, applied in order:<br><br>
+<strong>1. Use generators / chunking</strong> — don't load all 1M rows into memory at once. Process in batches of 10k:<br>
+<div class="code-block">for chunk in pd.read_csv("data.csv", chunksize=10000):
+    process(chunk)</div>
+<strong>2. Vectorize with pandas/numpy</strong> — avoid Python loops; use vectorized operations:<br>
+<div class="code-block"># Slow:
+df["total"] = df.apply(lambda row: row["qty"] * row["price"], axis=1)
+# Fast:
+df["total"] = df["qty"] * df["price"]</div>
+<strong>3. Use multiprocessing</strong> — for CPU-bound tasks, parallelize with <code>ProcessPoolExecutor</code>.<br>
+<strong>4. Use bulk SQL inserts</strong> — instead of one INSERT per row, use <code>executemany()</code> or ORM bulk_insert.<br>
+<strong>5. Profile first</strong> — use <code>cProfile</code> or <code>line_profiler</code> to find the real bottleneck before optimizing.`
+      },
+    ]
+  },
+  {
+    id: "js",
+    name: "JavaScript & TypeScript",
+    color: "#f5a623",
+    icon: "JS",
+    qs: [
+      {
+        q: "How does the JavaScript event loop work?",
+        level: "medium",
+        tags: ["JavaScript"],
+        a: `JavaScript is <strong>single-threaded</strong> — it can only do one thing at a time. The event loop is how JS handles asynchronous tasks without blocking.<br><br>
+<strong>The process:</strong><br>
+1. JS executes synchronous code on the <strong>call stack</strong><br>
+2. Async operations (setTimeout, fetch, Promises) are sent to Web APIs<br>
+3. When they complete, their callbacks go into the <strong>task queue</strong> (or microtask queue for Promises)<br>
+4. The <strong>event loop</strong> checks: "Is the call stack empty?" If yes, it picks the next task from the queue<br><br>
+<div class="code-block">console.log("1");              // call stack
+setTimeout(() => console.log("2"), 0); // Web API → task queue
+Promise.resolve().then(() => console.log("3")); // microtask queue
+console.log("4");              // call stack
+
+// Output: 1, 4, 3, 2
+// Microtasks run before regular tasks!</div>`
+      },
+      {
+        q: "What are closures? When can they cause memory leaks?",
+        level: "hard",
+        tags: ["JavaScript"],
+        a: `A <strong>closure</strong> is when an inner function remembers variables from its outer function's scope, even after the outer function has finished executing.<br><br>
+<div class="code-block">function createCounter() {
+  let count = 0;  // this is "closed over"
+  return function() {
+    count++;
+    return count;
+  };
+}
+const counter = createCounter();
+counter(); // 1
+counter(); // 2</div>
+<strong>Memory leak scenario:</strong> If a closure holds a reference to a large object (like a DOM element or big array) and that closure is never cleaned up (e.g., stored in a long-lived variable or event listener), the garbage collector can't free that memory.<br><br>
+<div class="code-block">// Leak: event listener holds closure referencing large data
+function attachHandler() {
+  const bigData = new Array(1000000).fill("x");
+  document.addEventListener("click", () => {
+    console.log(bigData.length); // bigData never freed!
+  });
+}</div>
+<strong>Fix:</strong> Remove event listeners when components unmount (React's <code>useEffect</code> cleanup).`
+      },
+      {
+        q: "What are TypeScript generics? Give an example.",
+        level: "medium",
+        tags: ["TypeScript"],
+        a: `Generics make code reusable across types without losing type safety.<br><br>
+<div class="code-block">// Without generics — loses type info
+function getFirst(arr: any[]): any { return arr[0]; }
+
+// With generics — type-safe
+function getFirst&lt;T&gt;(arr: T[]): T { return arr[0]; }
+
+const name = getFirst&lt;string&gt;(["Alice", "Bob"]); // type: string
+const num = getFirst&lt;number&gt;([1, 2, 3]);         // type: number</div>
+<strong>Real use in your projects:</strong> When building API response handlers in React, you'd use generics for typed fetch wrappers:<br>
+<div class="code-block">async function apiGet&lt;T&gt;(url: string): Promise&lt;T&gt; {
+  const res = await fetch(url);
+  return res.json() as T;
+}
+
+const user = await apiGet&lt;User&gt;("/api/user/1");</div>`
+      },
+      {
+        q: "What is the difference between interface and type in TypeScript?",
+        level: "medium",
+        tags: ["TypeScript"],
+        a: `Both define the shape of an object, but they have important differences:<br><br>
+<strong>interface</strong> — best for defining object shapes; supports declaration merging (you can reopen and extend an interface):<br>
+<div class="code-block">interface User { name: string; }
+interface User { age: number; }  // merges — now User has both!</div>
+<strong>type</strong> — more powerful, can represent unions, intersections, primitives, tuples:<br>
+<div class="code-block">type ID = string | number;  // union — can't do this with interface
+type Point = { x: number } & { y: number };  // intersection</div>
+<strong>Rule of thumb:</strong> Use <code>interface</code> for object/component prop shapes. Use <code>type</code> for unions, utility types, and complex compositions.`
+      },
+    ]
+  },
+  {
+    id: "react",
+    name: "React",
+    color: "#5be3a0",
+    icon: "⚛",
+    qs: [
+      {
+        q: "What is the virtual DOM and how does React use it?",
+        level: "easy",
+        tags: ["React"],
+        a: `The <strong>virtual DOM</strong> is a lightweight in-memory copy of the real DOM. React uses it to make UI updates efficient.<br><br>
+<strong>Process:</strong><br>
+1. When state changes, React creates a new virtual DOM tree<br>
+2. React <strong>diffs</strong> the new tree against the previous virtual DOM<br>
+3. Only the actual changes are applied to the real DOM (called <strong>reconciliation</strong>)<br><br>
+<div class="highlight">This is why React is fast — real DOM updates are expensive (cause reflows/repaints). By batching and minimizing them, React keeps UIs smooth even with frequent state changes.</div>
+<strong>Real context:</strong> In your role-based dashboards, when a manager's data refreshes, React only re-renders the changed chart component, not the entire page.`
+      },
+      {
+        q: "What is useEffect and what are its common mistakes?",
+        level: "easy",
+        tags: ["React"],
+        a: `<code>useEffect</code> lets you run side effects (API calls, subscriptions, DOM updates) after rendering.<br><br>
+<div class="code-block">useEffect(() => {
+  fetchDashboardData(userId);  // runs after render
+}, [userId]);  // dependency array: re-runs if userId changes</div>
+<strong>Common mistakes:</strong><br><br>
+<strong>1. Missing dependency:</strong> If you use a variable inside useEffect but don't list it in deps, you get stale data.<br>
+<strong>2. Infinite loop:</strong> Setting state inside useEffect with no or wrong deps causes infinite re-renders.<br>
+<div class="code-block">// ❌ Infinite loop — setData triggers re-render → useEffect runs again
+useEffect(() => {
+  setData([...]);  // no dep array
+});
+
+// ✅ Correct — runs once on mount
+useEffect(() => {
+  fetchData();
+}, []);</div>
+<strong>3. No cleanup:</strong> Subscriptions or event listeners created in useEffect should be cleaned up to avoid memory leaks.`
+      },
+      {
+        q: "How did you structure components for role-based dashboards?",
+        level: "medium",
+        tags: ["React", "Project"],
+        a: `In the <strong>Content Management Platform and Timesheet System</strong>, I had 3 roles: Admin, Manager, and Employee. My approach:<br><br>
+<strong>1. Role-based route protection:</strong><br>
+<div class="code-block">const ProtectedRoute = ({ role, children }) => {
+  const { user } = useAuth();
+  if (user.role !== role) return &lt;Navigate to="/unauthorized" /&gt;;
+  return children;
+};</div>
+<strong>2. Shared layout, role-specific content:</strong> I used a single <code>DashboardLayout</code> component. Inside, a <code>useDashboardData(role)</code> hook fetched only the data relevant to that role.<br><br>
+<strong>3. Component composition:</strong> Atomic UI components (charts, tables, cards) were role-agnostic. Role logic lived in parent containers, not inside UI components — keeping them reusable.<br><br>
+<strong>4. Context for auth state:</strong> Stored the authenticated user + role in React Context so any component could access it without prop drilling.`
+      },
+      {
+        q: "What is React.memo and useMemo? When do they help?",
+        level: "medium",
+        tags: ["React"],
+        a: `Both are performance optimizations, but for different things:<br><br>
+<strong>React.memo</strong> — prevents a component from re-rendering if its props haven't changed:<br>
+<div class="code-block">const ChartWidget = React.memo(({ data }) => {
+  return &lt;LineChart data={data} /&gt;;
+});
+// Only re-renders if 'data' prop actually changes</div>
+<strong>useMemo</strong> — caches an expensive computed value between renders:<br>
+<div class="code-block">const processedData = useMemo(() => {
+  return rawData.map(row => transform(row));  // expensive
+}, [rawData]);  // only recalculates if rawData changes</div>
+<strong>When NOT to use them:</strong> Don't use them everywhere — they add overhead for the comparison itself. Use only when you have a proven performance problem (profiler shows a component re-rendering unnecessarily).`
+      },
+      {
+        q: "Design a React architecture for a multi-role real-time dashboard.",
+        level: "hard",
+        tags: ["React", "Architecture", "System Design"],
+        a: `Based on what I built in the Timesheet and CMS platforms, here's the architecture:<br><br>
+<strong>Folder structure:</strong><br>
+<div class="code-block">src/
+├── components/     # reusable UI atoms (Button, Chart, Table)
+├── features/       # feature modules
+│   ├── dashboard/  # role-specific dashboard views
+│   ├── auth/       # login, protected routes
+│   └── reports/    # report generation
+├── hooks/          # useAuth, useDashboardData, useRealtime
+├── context/        # AuthContext, ThemeContext
+└── services/       # API calls (axios layer)</div>
+<strong>Real-time updates:</strong> Use WebSocket or server-sent events for live data. In React, a custom <code>useRealtime(endpoint)</code> hook subscribes to updates and stores them in state.<br><br>
+<strong>Role-based routing:</strong> Higher-order <code>ProtectedRoute</code> component checks user role before rendering any page.<br><br>
+<strong>State management:</strong> At 3 years level, React Context + useReducer is sufficient. Redux only if global state becomes very complex (10+ shared slices).`
+      },
+    ]
+  },
+  {
+    id: "nextjs",
+    name: "Next.js",
+    color: "#888899",
+    icon: "N",
+    qs: [
+      {
+        q: "What is the difference between SSR, SSG, and CSR?",
+        level: "easy",
+        tags: ["Next.js"],
+        a: `<strong>CSR (Client-Side Rendering)</strong> — HTML is empty, JS runs in browser and renders content. Slow initial load, fast subsequent nav. Used in plain React SPAs.<br><br>
+<strong>SSG (Static Site Generation)</strong> — HTML is pre-built at build time. Fastest load, but data is only as fresh as the last build. Good for blogs, landing pages.<br><br>
+<strong>SSR (Server-Side Rendering)</strong> — HTML is generated on each request on the server. Fresh data every request. Slower than SSG but data is always current.<br><br>
+<div class="code-block">// SSG
+export async function getStaticProps() {
+  const data = await fetch("/api/reports");
+  return { props: { data }, revalidate: 60 }; // ISR: refresh every 60s
+}
+
+// SSR
+export async function getServerSideProps(context) {
+  const data = await fetchUserDashboard(context.req.cookies.token);
+  return { props: { data } };
+}</div>
+<strong>In your QA platform:</strong> Role-specific dashboards used SSR (data must be fresh per request), while public-facing pages could use SSG.`
+      },
+      {
+        q: "Why did you choose Next.js for the QA platform?",
+        level: "medium",
+        tags: ["Next.js", "Project"],
+        a: `Several reasons specific to that project's requirements:<br><br>
+<strong>1. SSR for fresh audit data:</strong> Audit reports and compliance data must always be current. SSR ensures every page load fetches the latest state from the DB.<br><br>
+<strong>2. SEO considerations:</strong> If the platform had public-facing compliance reports, SSR ensures search engines can index them (CSR React can't).<br><br>
+<strong>3. Built-in API routes:</strong> Next.js API routes let me build lightweight backend endpoints in the same repo — useful for quick internal APIs without spinning up a full FastAPI service.<br><br>
+<strong>4. File-based routing:</strong> Faster to build multi-page apps — <code>pages/dashboard/admin.tsx</code> automatically becomes the <code>/dashboard/admin</code> route.<br><br>
+<strong>5. Image optimization:</strong> The <code>next/image</code> component automatically optimizes images — useful for the media gallery in the CMS project.`
+      },
+      {
+        q: "How would you implement authentication and protected routes in Next.js?",
+        level: "hard",
+        tags: ["Next.js", "Security"],
+        a: `Here's the approach I'd use (and used in my projects):<br><br>
+<strong>1. JWT stored in HTTP-only cookies</strong> (not localStorage — safer against XSS):<br>
+<div class="code-block">// pages/api/login.ts
+res.setHeader("Set-Cookie", 
+  "token=" + jwt + "; HttpOnly; Secure; Path=/; SameSite=Strict"
+);</div>
+<strong>2. Middleware for route protection</strong> (Next.js 12+):<br>
+<div class="code-block">// middleware.ts
+export function middleware(req) {
+  const token = req.cookies.get("token");
+  if (!token && req.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+}</div>
+<strong>3. Role check on server side:</strong><br>
+<div class="code-block">export async function getServerSideProps({ req }) {
+  const user = await verifyToken(req.cookies.token);
+  if (user.role !== "admin") return { redirect: { destination: "/403" } };
+  return { props: { user } };
+}</div>
+<strong>4. Client-side AuthContext</strong> for displaying correct nav items based on role.`
+      },
+    ]
+  },
+  {
+    id: "fastapi",
+    name: "FastAPI & Backend",
+    color: "#5be3a0",
+    icon: "⚡",
+    qs: [
+      {
+        q: "What is FastAPI and why choose it over Flask?",
+        level: "easy",
+        tags: ["FastAPI", "Python"],
+        a: `<strong>FastAPI</strong> is a modern Python web framework for building APIs. Key advantages over Flask:<br><br>
+<strong>1. Automatic data validation</strong> via Pydantic — request/response data is validated automatically:<br>
+<div class="code-block">class UserCreate(BaseModel):
+    name: str
+    email: EmailStr
+    role: Literal["admin", "manager", "employee"]
+
+@app.post("/users")
+async def create_user(user: UserCreate):  # auto-validated!
+    ...</div>
+<strong>2. Auto-generated docs</strong> — Swagger UI at <code>/docs</code> and ReDoc at <code>/redoc</code> — no extra setup.<br>
+<strong>3. Native async support</strong> — built on ASGI (Starlette), handles concurrent requests efficiently.<br>
+<strong>4. Type hints everywhere</strong> — better IDE support, fewer bugs.<br><br>
+<div class="highlight">In your CMS and QA platforms, FastAPI was the right choice because of async support for OpenAI API calls and automatic Pydantic validation for multi-role request bodies.</div>`
+      },
+      {
+        q: "How did you implement role-based access control in your APIs?",
+        level: "medium",
+        tags: ["FastAPI", "Security", "Project"],
+        a: `In the Content Management and QA platforms, I implemented RBAC using JWT tokens and FastAPI dependency injection:<br><br>
+<strong>Step 1 — JWT with role claim:</strong><br>
+<div class="code-block">def create_token(user_id: int, role: str):
+    payload = {"sub": user_id, "role": role, "exp": datetime.utcnow() + timedelta(hours=24)}
+    return jwt.encode(payload, SECRET_KEY, algorithm="HS256")</div>
+<strong>Step 2 — Dependency for role checking:</strong><br>
+<div class="code-block">def require_role(*roles):
+    def check(token: str = Depends(oauth2_scheme)):
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        if payload["role"] not in roles:
+            raise HTTPException(status_code=403, detail="Forbidden")
+        return payload
+    return check
+
+@app.get("/admin/reports")
+async def get_reports(user=Depends(require_role("admin", "manager"))):
+    ...</div>
+This kept security logic in one place — all role checks were reusable dependencies, not scattered across endpoints.`
+      },
+      {
+        q: "How would you handle long-running AI tasks in FastAPI without blocking?",
+        level: "hard",
+        tags: ["FastAPI", "AI", "Architecture"],
+        a: `This was a real challenge in the CMS platform when summarizing large documents — OpenAI calls can take 5–15 seconds.<br><br>
+<strong>Solution: Background tasks + polling pattern</strong><br><br>
+<strong>Step 1 — Accept request, return task ID immediately:</strong><br>
+<div class="code-block">@app.post("/summarize")
+async def summarize(doc_id: int, background_tasks: BackgroundTasks):
+    task_id = str(uuid4())
+    background_tasks.add_task(run_summarization, task_id, doc_id)
+    return {"task_id": task_id, "status": "processing"}</div>
+<strong>Step 2 — Store progress in DB/Redis:</strong><br>
+<div class="code-block">async def run_summarization(task_id: str, doc_id: int):
+    await db.update_task(task_id, status="running")
+    result = await langchain_summarize(doc_id)
+    await db.update_task(task_id, status="done", result=result)</div>
+<strong>Step 3 — Frontend polls for status:</strong><br>
+<div class="code-block">@app.get("/task/{task_id}")
+async def get_task_status(task_id: str):
+    return await db.get_task(task_id)</div>
+<strong>For production at scale:</strong> Use Celery + Redis as a proper task queue instead of FastAPI BackgroundTasks.`
+      },
+    ]
+  },
+  {
+    id: "sql",
+    name: "SQL & Databases",
+    color: "#f5a623",
+    icon: "DB",
+    qs: [
+      {
+        q: "What is database normalization? Explain 1NF, 2NF, 3NF.",
+        level: "easy",
+        tags: ["SQL"],
+        a: `Normalization is organizing tables to reduce data redundancy and improve integrity.<br><br>
+<strong>1NF (First Normal Form):</strong> Each column has atomic (indivisible) values; no repeating groups.<br>
+<div class="code-block">❌ Bad: | user_id | skills          |
+              | 1       | Python, React   |  -- multiple values in one cell
+
+✅ 1NF:  | user_id | skill  |
+              | 1       | Python |
+              | 1       | React  |</div>
+<strong>2NF:</strong> Must be in 1NF + every non-key column depends on the <em>entire</em> primary key (no partial dependencies).<br><br>
+<strong>3NF:</strong> Must be in 2NF + no transitive dependencies (non-key columns should not depend on other non-key columns).<br><br>
+<strong>Real example from Timesheet system:</strong> Storing <code>manager_name</code> in the timesheets table would be a 3NF violation — it depends on <code>manager_id</code>, not on the timesheet itself. Fix: store <code>manager_id</code> and JOIN to a separate users table.`
+      },
+      {
+        q: "How would you design the database schema for your Timesheet system?",
+        level: "medium",
+        tags: ["SQL", "Project", "Architecture"],
+        a: `Here's the normalized schema I designed:<br><br>
+<div class="code-block">-- Users table (all roles)
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  role ENUM('admin','manager','employee'),
+  manager_id INT REFERENCES users(id)
+);
+
+-- Projects
+CREATE TABLE projects (
+  id INT PRIMARY KEY,
+  name VARCHAR(200),
+  client VARCHAR(200),
+  start_date DATE,
+  end_date DATE
+);
+
+-- Timesheet entries
+CREATE TABLE timesheets (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT REFERENCES users(id),
+  project_id INT REFERENCES projects(id),
+  date DATE,
+  hours DECIMAL(4,2),
+  description TEXT,
+  status ENUM('draft','submitted','approved','rejected'),
+  submitted_at TIMESTAMP
+);
+</div>
+<strong>Key design decisions:</strong> Self-referencing <code>users.manager_id</code> for org hierarchy. Status enum on timesheets for approval workflow. Separate projects table for clean joins on analytics queries.`
+      },
+      {
+        q: "How would you optimize a slow SQL query joining 4 tables with 500k+ rows?",
+        level: "hard",
+        tags: ["SQL"],
+        a: `Step-by-step optimization approach:<br><br>
+<strong>1. Run EXPLAIN first</strong> — see what MySQL is actually doing:<br>
+<div class="code-block">EXPLAIN SELECT t.*, u.name, p.name
+FROM timesheets t
+JOIN users u ON t.user_id = u.id
+JOIN projects p ON t.project_id = p.id
+WHERE t.date BETWEEN '2024-01-01' AND '2024-03-31';</div>
+Look for: <code>type: ALL</code> (full scan = bad), missing indexes, large <code>rows</code> estimates.<br><br>
+<strong>2. Add indexes on JOIN and WHERE columns:</strong><br>
+<div class="code-block">CREATE INDEX idx_timesheets_user ON timesheets(user_id);
+CREATE INDEX idx_timesheets_date ON timesheets(date);
+CREATE INDEX idx_timesheets_project ON timesheets(project_id);</div>
+<strong>3. SELECT only needed columns</strong> — avoid <code>SELECT *</code>.<br>
+<strong>4. Use covering indexes</strong> — if a query always filters by <code>(date, user_id)</code>, create a composite index.<br>
+<strong>5. Consider caching</strong> — cache dashboard aggregates in Redis if they don't change frequently.`
+      },
+    ]
+  },
+  {
+    id: "ai",
+    name: "AI / LangChain / LLM",
+    color: "#7c6ff7",
+    icon: "AI",
+    qs: [
+      {
+        q: "What is LangChain and what problem does it solve?",
+        level: "easy",
+        tags: ["AI", "LangChain"],
+        a: `<strong>LangChain</strong> is a framework for building applications powered by large language models (LLMs). It solves the complexity of connecting LLMs to external data, tools, and multi-step workflows.<br><br>
+<strong>Without LangChain:</strong> You'd manually write code to split documents, manage prompt templates, chain multiple API calls, handle memory, and connect to vector databases.<br><br>
+<strong>With LangChain:</strong> These are built-in abstractions:<br>
+<ul>
+<li><strong>Chains</strong> — sequence of LLM calls</li>
+<li><strong>Agents</strong> — LLM decides which tools to call</li>
+<li><strong>Memory</strong> — conversation history management</li>
+<li><strong>Retrievers</strong> — fetch relevant docs from vector stores</li>
+<li><strong>Document loaders</strong> — ingest PDFs, Word docs, web pages</li>
+</ul>
+<div class="highlight">In your CMS project, LangChain handled document loading, chunking, embedding, and summarization — work that would have taken hundreds of lines of custom code to build manually.</div>`
+      },
+      {
+        q: "What is the difference between RAG and fine-tuning?",
+        level: "medium",
+        tags: ["AI", "LangChain"],
+        a: `<strong>RAG (Retrieval-Augmented Generation):</strong> Keep the base LLM as-is. At query time, search your own documents, inject the relevant content into the prompt, and let the LLM answer using that context.<br><br>
+<strong>Fine-tuning:</strong> Actually train/update the model's weights on your domain-specific data to make it inherently better at your task.<br><br>
+<strong>Comparison:</strong><br>
+<div class="code-block">               RAG              Fine-tuning
+Cost:          Low (retrieval)  High (GPU training)
+Data freshness: Real-time        Needs retraining
+Best for:      Knowledge Q&A    Style/format/tone
+Explainability: Source-cited    Black box</div>
+<strong>What you used:</strong> In the QA audit chatbot, RAG was the right choice — compliance documents change frequently, RAG retrieves the current version every time. Fine-tuning would require retraining every time a policy document updates.`
+      },
+      {
+        q: "Walk me through the architecture of your QA audit AI chatbot.",
+        level: "medium",
+        tags: ["AI", "LangChain", "Project"],
+        a: `Here's the architecture I built:<br><br>
+<strong>1. Document ingestion pipeline:</strong><br>
+<div class="code-block">loader = PyPDFLoader("audit_policy.pdf")
+docs = loader.load()
+chunks = RecursiveCharacterTextSplitter(
+    chunk_size=500, chunk_overlap=50
+).split_documents(docs)
+embeddings = OpenAIEmbeddings()
+vectorstore = FAISS.from_documents(chunks, embeddings)</div>
+<strong>2. Retrieval chain:</strong><br>
+<div class="code-block">retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+qa_chain = RetrievalQA.from_chain_type(
+    llm=ChatOpenAI(model="gpt-4"),
+    retriever=retriever,
+    return_source_documents=True
+)</div>
+<strong>3. FastAPI endpoint exposes the chain:</strong><br>
+<div class="code-block">@app.post("/audit/query")
+async def query(question: str):
+    result = qa_chain({"query": question})
+    return {"answer": result["result"], "sources": result["source_documents"]}</div>
+<strong>4. React chat UI</strong> consumed this API with streaming responses displayed in real time.`
+      },
+      {
+        q: "How would you handle hallucinations from an LLM in a production audit tool?",
+        level: "hard",
+        tags: ["AI", "LangChain"],
+        a: `This is critical in a compliance/audit context — wrong information can have legal consequences. My approach:<br><br>
+<strong>1. Ground responses in retrieved documents (RAG):</strong> Never let the LLM answer from "memory". Always require it to base answers on retrieved audit docs. Prompt: <em>"Answer only based on the provided context. If the answer is not in the context, say 'I don't know.'"</em><br><br>
+<strong>2. Return source citations:</strong> Every answer shows which document/section it came from, so users can verify.<br><br>
+<strong>3. Confidence thresholds:</strong> If retrieval similarity score is below a threshold (e.g., 0.75), return "I couldn't find relevant information" instead of guessing.<br><br>
+<strong>4. Human-in-the-loop for critical queries:</strong> Flag sensitive queries (e.g., "Is this compliant with ISO 27001?") for human review.<br><br>
+<strong>5. Evaluation pipeline:</strong> Build a test set of known Q&A pairs and run the chain against it periodically to catch accuracy regressions.<br><br>
+<div class="highlight">The key principle: use the LLM as a natural language interface, not as the source of truth. The documents are the source of truth.</div>`
+      },
+      {
+        q: "How would you build a semantic search system for document retrieval?",
+        level: "hard",
+        tags: ["AI", "LangChain", "Architecture"],
+        a: `This is exactly the search feature in your CMS platform. Here's the full pipeline:<br><br>
+<strong>1. Embed documents at index time:</strong><br>
+<div class="code-block">from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+
+# Convert docs to vector embeddings
+embeddings = OpenAIEmbeddings()  # 1536-dim vectors
+vectorstore = FAISS.from_documents(documents, embeddings)
+vectorstore.save_local("index/")</div>
+<strong>2. At query time, embed the query and find nearest neighbors:</strong><br>
+<div class="code-block">query = "data privacy compliance requirements"
+query_vec = embeddings.embed_query(query)
+results = vectorstore.similarity_search_with_score(query, k=5)</div>
+<strong>3. Rerank results</strong> — optionally use a cross-encoder reranker for more accurate relevance.<br><br>
+<strong>Why semantic > keyword search:</strong> Keyword search for "data privacy" misses documents saying "information security regulations." Semantic search understands meaning, not just words.<br><br>
+<strong>Production considerations:</strong> For thousands of documents, replace FAISS (in-memory) with <strong>Pinecone</strong> or <strong>Qdrant</strong> (hosted vector databases with filtering and scaling).`
+      },
+    ]
+  },
+  {
+    id: "dsa",
+    name: "Data Structures & Algorithms",
+    color: "#5be3a0",
+    icon: "◈",
+    qs: [
+      {
+        q: "What is a hash map and how does it handle collisions?",
+        level: "easy",
+        tags: ["DSA"],
+        a: `A <strong>hash map</strong> (dictionary in Python) stores key-value pairs. It uses a <strong>hash function</strong> to compute an index for each key, enabling O(1) average-case lookup.<br><br>
+<strong>Collision:</strong> When two different keys hash to the same index.<br><br>
+<strong>Handling methods:</strong><br>
+<strong>1. Chaining</strong> — each bucket holds a linked list of entries that hash to the same index:<br>
+<div class="code-block">bucket[3] → [("apple", 5)] → [("mango", 3)]  # both hashed to 3</div>
+<strong>2. Open addressing</strong> — if a slot is taken, probe to the next empty slot.<br><br>
+<strong>Practical context:</strong> In your Timesheet system, when building a dashboard that aggregates hours per project, a hashmap (<code>dict</code>) groups timesheet entries by <code>project_id</code> in O(n) time instead of nested loops O(n²).`
+      },
+      {
+        q: "Two Sum — solve it in O(n) time. (Write code)",
+        level: "medium",
+        tags: ["DSA"],
+        a: `<strong>Problem:</strong> Given an array and a target sum, return indices of the two numbers that add up to target.<br><br>
+<strong>O(n²) naive approach:</strong> Nested loops — check every pair.<br><br>
+<strong>O(n) optimal approach:</strong> Use a hash map to store numbers we've seen and their indices:<br>
+<div class="code-block">def two_sum(nums, target):
+    seen = {}  # value → index
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
+
+# Example:
+two_sum([2, 7, 11, 15], 9)
+# → num=2, complement=7 (not in seen), store {2:0}
+# → num=7, complement=2 (found in seen at index 0!)
+# → return [0, 1]  ✅</div>
+<strong>Time complexity:</strong> O(n) — single pass. <strong>Space complexity:</strong> O(n) — hash map.`
+      },
+      {
+        q: "Find the longest substring without repeating characters.",
+        level: "hard",
+        tags: ["DSA"],
+        a: `<strong>Sliding window technique</strong> — O(n) solution:<br><br>
+<div class="code-block">def length_of_longest_substring(s: str) -> int:
+    char_index = {}  # char → last seen index
+    left = 0
+    max_len = 0
+
+    for right, char in enumerate(s):
+        # If char was seen and is inside our current window
+        if char in char_index and char_index[char] >= left:
+            left = char_index[char] + 1  # shrink window
+        char_index[char] = right
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
+
+# "abcabcbb" → 3 ("abc")
+# "pwwkew"   → 3 ("wke")</div>
+<strong>Key insight:</strong> Maintain a window [left, right] with no repeats. When a repeat is found, move <code>left</code> past the previous occurrence of that character. The hash map gives O(1) lookup of where we last saw a character.`
+      },
+      {
+        q: "Given projects with dependencies, find the order to complete them. (Topological sort)",
+        level: "hard",
+        tags: ["DSA"],
+        a: `This is <strong>topological sort</strong> using Kahn's Algorithm (BFS-based):<br><br>
+<div class="code-block">from collections import deque, defaultdict
+
+def task_order(n, dependencies):
+    # Build adjacency list + in-degree count
+    graph = defaultdict(list)
+    in_degree = [0] * n
+
+    for a, b in dependencies:  # b must be done before a
+        graph[b].append(a)
+        in_degree[a] += 1
+
+    # Start with tasks that have no dependencies
+    queue = deque([i for i in range(n) if in_degree[i] == 0])
+    order = []
+
+    while queue:
+        task = queue.popleft()
+        order.append(task)
+        for dependent in graph[task]:
+            in_degree[dependent] -= 1
+            if in_degree[dependent] == 0:
+                queue.append(dependent)
+
+    return order if len(order) == n else []  # empty = cycle detected
+
+# 4 tasks, task 1 needs 0, task 2 needs 1, task 3 needs 0
+task_order(4, [[1,0],[2,1],[3,0]])  # → [0, 1, 3, 2]</div>
+<strong>Real use:</strong> This models your project planning system — some tasks (code review) can't start before others (feature complete). Detecting cycles = detecting circular dependencies.`
+      },
+    ]
+  },
+  {
+    id: "sysdesign",
+    name: "System Design",
+    color: "#f06060",
+    icon: "⬡",
+    qs: [
+      {
+        q: "How would you design the Timesheet system for 10,000 concurrent users?",
+        level: "hard",
+        tags: ["System Design", "Project"],
+        a: `The system you built was for a smaller scale, but here's how to scale it:<br><br>
+<strong>Layer 1 — Frontend:</strong> React SPA served via CDN (Cloudflare). Static assets don't hit your server.<br><br>
+<strong>Layer 2 — Load Balancer:</strong> Nginx / AWS ALB distributes traffic across multiple FastAPI instances.<br><br>
+<strong>Layer 3 — Backend:</strong> Multiple FastAPI containers (Docker + Kubernetes). Stateless — no session stored on server, JWT in cookies.<br><br>
+<strong>Layer 4 — Database:</strong>
+<ul>
+<li>MySQL with read replicas — dashboard reads go to replicas, writes go to primary</li>
+<li>Add Redis cache for dashboard aggregates (hourly summaries don't change every second)</li>
+</ul>
+<strong>Layer 5 — Async processing:</strong> Approval notifications, email digests → Celery + Redis queue, not synchronous API calls.<br><br>
+<div class="code-block">User → CDN → Load Balancer → FastAPI (×3) → MySQL Primary
+                                              ↓              ↓
+                                           Redis Cache   Read Replica
+                                              ↓
+                                          Celery Worker → Email/Notification</div>`
+      },
+      {
+        q: "Design a notification system for real-time dashboard updates.",
+        level: "hard",
+        tags: ["System Design"],
+        a: `For a multi-role dashboard (admin/manager/employee) with real-time updates:<br><br>
+<strong>Option A: WebSockets</strong> — persistent bidirectional connection. Best for truly real-time (live typing, live cursors).<br><br>
+<strong>Option B: Server-Sent Events (SSE)</strong> — server pushes updates to client over HTTP. Simpler, one-directional, works with HTTP/2. Best for dashboards.<br><br>
+<strong>My recommended architecture for dashboards:</strong><br>
+<div class="code-block"># FastAPI SSE endpoint
+@app.get("/stream/dashboard/{user_id}")
+async def dashboard_stream(user_id: int):
+    async def event_generator():
+        while True:
+            data = await redis.get(f"dashboard:{user_id}")
+            yield f"data: {data}\n\n"
+            await asyncio.sleep(5)  # push every 5 seconds
+    return EventSourceResponse(event_generator())</div>
+<div class="code-block">// React client
+useEffect(() => {
+  const es = new EventSource("/stream/dashboard/" + userId);
+  es.onmessage = (e) => setDashboardData(JSON.parse(e.data));
+  return () => es.close();  // cleanup
+}, [userId]);</div>
+<strong>For notifications specifically:</strong> Store unread notifications in DB, push count via SSE, fetch full list on click.`
+      },
+      {
+        q: "Microservices vs monolith — what should your QA platform be?",
+        level: "hard",
+        tags: ["System Design", "Architecture"],
+        a: `<strong>At 3 years experience, building alone or in a small team: monolith is almost always the right answer first.</strong><br><br>
+<strong>Why monolith for your QA platform:</strong><br>
+<ul>
+<li>You owned it solo — no team coordination overhead</li>
+<li>Simpler to deploy (one Docker container vs 5 services)</li>
+<li>Easier to debug — one codebase, one log stream</li>
+<li>Shared database = no distributed transaction complexity</li>
+<li>Faster to iterate on features</li>
+</ul>
+<strong>When to split into microservices:</strong><br>
+<ul>
+<li>Different components need to scale independently (AI service gets more traffic than auth)</li>
+<li>Different teams own different components</li>
+<li>A service needs to be in a different language/runtime</li>
+</ul>
+<div class="highlight">The right answer in interviews: "I'd start with a well-structured modular monolith, with clear boundaries between features (auth, audit, reporting, AI). If specific components need independent scaling later, I'd extract them then." This shows pragmatism — a far more valuable trait than microservice enthusiasm.</div>`
+      },
+    ]
+  },
+  {
+    id: "git",
+    name: "Git & DevOps",
+    color: "#f5a623",
+    icon: "⎇",
+    qs: [
+      {
+        q: "What is the difference between git merge and git rebase?",
+        level: "easy",
+        tags: ["Git"],
+        a: `Both integrate changes from one branch into another, but differently:<br><br>
+<strong>git merge:</strong> Creates a new "merge commit" that joins two branch histories. History is preserved as-is.<br>
+<div class="code-block">main:    A---B---C---M (merge commit)
+                     /
+feature: D---E---F</div>
+<strong>git rebase:</strong> Replays your commits on top of the target branch. History is linear (cleaner).<br>
+<div class="code-block">Before rebase:   main: A---B---C
+                 feature: D---E---F (branched from A)
+
+After rebase onto main:
+                 main: A---B---C---D'---E'---F'</div>
+<strong>Rule of thumb:</strong><br>
+<ul>
+<li>Use <strong>merge</strong> for shared/public branches — preserves history, no force-push needed</li>
+<li>Use <strong>rebase</strong> on your local feature branch before merging — keeps history clean</li>
+<li><strong>Never rebase shared branches</strong> — rewrites history, causes problems for others</li>
+</ul>`
+      },
+      {
+        q: "What does your deployment workflow look like for a FastAPI + Next.js app?",
+        level: "medium",
+        tags: ["Git", "DevOps", "Project"],
+        a: `Here's the workflow I used for my projects:<br><br>
+<strong>1. Branching strategy:</strong><br>
+<div class="code-block">main → production
+develop → staging/testing
+feature/* → development
+hotfix/* → emergency production fixes</div>
+<strong>2. Dockerization:</strong><br>
+<div class="code-block"># FastAPI Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</div>
+<strong>3. CI/CD pipeline (GitHub Actions):</strong><br>
+<div class="code-block">on: push to main
+steps:
+  1. Run tests (pytest)
+  2. Build Docker images
+  3. Push to Docker Hub / ECR
+  4. SSH to server → docker-compose pull && up -d</div>
+<strong>4. Environment management:</strong> <code>.env</code> files with secrets (never committed). <code>python-dotenv</code> on backend, <code>next.config.js</code> env vars on frontend.`
+      },
+    ]
+  }
+];
+
+let activeLevel = "all";
+let openCards = new Set();
+let openSections = {};
+data.forEach(s => openSections[s.id] = true);
+
+function getFiltered() {
+  const search = document.getElementById("search")?.value.toLowerCase() || "";
+  return data.map(sec => {
+    const qs = sec.qs.filter(q => {
+      const lvlOk = activeLevel === "all" || q.level === activeLevel;
+      const srchOk = !search || q.q.toLowerCase().includes(search) || (q.a||"").toLowerCase().includes(search);
+      return lvlOk && srchOk;
+    });
+    return { ...sec, qs };
+  }).filter(s => s.qs.length > 0);
+}
+
+function render() {
+  const filtered = getFiltered();
+  const total = filtered.reduce((a,s)=>a+s.qs.length,0);
+  const easy = filtered.reduce((a,s)=>a+s.qs.filter(q=>q.level==="easy").length,0);
+  const med = filtered.reduce((a,s)=>a+s.qs.filter(q=>q.level==="medium").length,0);
+  const hard = filtered.reduce((a,s)=>a+s.qs.filter(q=>q.level==="hard").length,0);
+
+  document.getElementById("chip-total").textContent = total + " questions";
+  document.getElementById("chip-easy").textContent = easy + " basic";
+  document.getElementById("chip-med").textContent = med + " medium";
+  document.getElementById("chip-hard").textContent = hard + " hard";
+
+  // Filters
+  document.getElementById("filters").innerHTML = [
+    {v:"all",l:"All Levels"},
+    {v:"easy",l:"Basic",cls:"on-easy"},
+    {v:"medium",l:"Medium",cls:"on-med"},
+    {v:"hard",l:"Hard",cls:"on-hard"}
+  ].map(f => `<button class="filter-btn ${activeLevel===f.v?(f.cls||'on'):''}" onclick="setLevel('${f.v}')">${f.l}</button>`).join("");
+
+  // Sidebar
+  document.getElementById("sidebar-nav").innerHTML = filtered.map(s => `
+    <button class="nav-item" onclick="scrollTo('${s.id}')">
+      <span class="nav-dot" style="background:${s.color}"></span>${s.name}
+    </button>`).join("");
+
+  // Content
+  if(!filtered.length) {
+    document.getElementById("content").innerHTML = `<div class="empty">No questions match your search.</div>`;
+    return;
+  }
+
+  document.getElementById("content").innerHTML = filtered.map(sec => {
+    const isOpen = openSections[sec.id] !== false;
+    const completed = [...openCards].filter(k=>k.startsWith(sec.id+"-")).length;
+    const pct = sec.qs.length ? Math.round(completed/sec.qs.length*100) : 0;
+    return `
+    <div class="section" id="sec-${sec.id}">
+      <div class="section-head" onclick="toggleSection('${sec.id}')">
+        <div class="section-icon" style="background:${sec.color}22;color:${sec.color};font-family:monospace;font-size:12px;font-weight:600">${sec.icon}</div>
+        <span class="section-name">${sec.name}</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <span class="section-count">${sec.qs.length} Q</span>
+        </div>
+        <span class="chevron ${isOpen?'open':''}">▼</span>
+      </div>
+      ${isOpen ? sec.qs.map((q, j) => {
+        const key = `${sec.id}-${j}`;
+        const isCardOpen = openCards.has(key);
+        return `
+        <div class="qa-card">
+          <div class="qa-q" onclick="toggleCard('${key}')">
+            <span class="q-num">${j+1}.</span>
+            <div class="q-body">
+              <div class="q-text">${q.q}</div>
+              <div class="q-meta">
+                <span class="level-badge lv-${q.level}">${q.level}</span>
+                ${q.tags.map(t=>`<span class="tag-badge">${t}</span>`).join("")}
+              </div>
+            </div>
+            <span class="toggle-icon">${isCardOpen?'−':'+'}</span>
+          </div>
+          <div class="qa-a ${isCardOpen?'open':''}">
+            <div class="answer-label">▸ answer</div>
+            <div class="answer-text">${q.a}</div>
+          </div>
+        </div>`;
+      }).join("") : ""}
+    </div>`;
+  }).join("");
+}
+
+function setLevel(l) { activeLevel = l; render(); }
+function toggleSection(id) { openSections[id] = !openSections[id]; render(); }
+function toggleCard(key) {
+  if(openCards.has(key)) openCards.delete(key);
+  else openCards.add(key);
+  render();
+}
+function scrollTo(id) {
+  const el = document.getElementById("sec-"+id);
+  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+render();
+</script>
+</body>
+</html>
